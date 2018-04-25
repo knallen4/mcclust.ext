@@ -6,3 +6,7 @@ S3method(summary,credibleball)
 S3method(plot,credibleball)
 S3method(print,summary.c.estimate)
 S3method(print,summary.credibleball)
+importFrom("grDevices", "heat.colors", "rainbow")
+importFrom("graphics", "image", "par", "plot", "points")
+importFrom("stats", "addmargins", "approx", "as.dist", "cutree",
+           "density", "hclust", "princomp")

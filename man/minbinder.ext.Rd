@@ -15,18 +15,20 @@ Finds a representative partition of the posterior by minimizing the posterior ex
 \usage{
 
 
-minbinder.ext(psm, cls.draw = NULL, method = c("avg", "comp", "draws", "laugreen", "greedy", "all"), 
-	      max.k = NULL, include.lg = FALSE, include.greedy = FALSE, start.cl.lg = NULL, 
-              start.cl.greedy = NULL, tol = 0.001, maxiter = NULL, l = NULL, suppress.comment = TRUE)
+minbinder.ext(psm, cls.draw = NULL,
+method = c("avg", "comp", "draws", "laugreen", "greedy", "all"),
+max.k = NULL, include.lg = FALSE, include.greedy = FALSE,
+start.cl.lg = NULL, start.cl.greedy = NULL, tol = 0.001,
+maxiter = NULL, l = NULL, suppress.comment = TRUE)
 
 }
 
 %- maybe also 'usage' for other objects documented here.
 
 \arguments{
-  
+
 \item{psm}{a posterior similarity matrix, which can be obtained from MCMC samples of clusterings through a call to \code{comp.psm}.}
- \item{cls.draw}{a matrix of the MCMC samples of clusterings of the \code{ncol(cls)} data points that have been used to compute \code{psm}. Note: \code{cls.draw} has to be provided if 
+ \item{cls.draw}{a matrix of the MCMC samples of clusterings of the \code{ncol(cls)} data points that have been used to compute \code{psm}. Note: \code{cls.draw} has to be provided if
   \code{method="draw"} or \code{"all"}.}
  \item{method}{the optimization method used. Should be one of \code{"avg"}, \code{"comp"}, \code{"draws"}, \code{"laugreen"}, \code{"greedy"} or \code{"all"}. Defaults to \code{"avg"}.}
  \item{max.k}{ integer, if \code{method="avg"} or \code{"comp"} the maximum number of clusters up to which the hierarchical clustering is cut.
@@ -42,13 +44,13 @@ minbinder.ext(psm, cls.draw = NULL, method = c("avg", "comp", "draws", "laugreen
 }
 
 \details{
-This functions extends \code{\link{minbinder}} by implementing the greedy search algorithm to minimize the posterior expected Binder's loss. 
+This functions extends \code{\link{minbinder}} by implementing the greedy search algorithm to minimize the posterior expected Binder's loss.
 
 Binder's loss counts the number of disagreements in all possible pairs of data points. The value returned is the posterior expected N-invariant Binder's loss, which is defined by multiplying Binder's loss times 2 and dividing by N^2, N representing the sample size, and is so-called because it only depends on the sample size through the proportion of data points in each cluster intersection.
 
 The function \code{\link{minbinder}} is called for optimization methods \code{method="avg"}, \code{"comp"}, \code{method="draws"}, and \code{"laugreen"}. \cr
- Method \code{"greedy"} implements a greedy search algorithm, where at each iteration, we consider the \code{l} closest ancestors or descendants and move in the direction of minimum posterior expected loss with the N-invariant Binder's loss as the distance. We recommend trying different starting locations \code{cl.start} and values of \code{l} that control the amount of local exploration. Depending on the starting location and \code{l}, the method can take some time to converge, thus it is only included in \code{method="all"} if \code{include.greedy=TRUE}. If \code{method="all"}, the starting location \code{cl.start} defaults to the best clustering found by the other methods. A description of the algorithm at every iteration is printed if \code{suppress.comment=FALSE}. 
-If \code{method="all"} all minimization methods except \code{"laugreen"} and \code{"greedy"} are applied by default. 
+ Method \code{"greedy"} implements a greedy search algorithm, where at each iteration, we consider the \code{l} closest ancestors or descendants and move in the direction of minimum posterior expected loss with the N-invariant Binder's loss as the distance. We recommend trying different starting locations \code{cl.start} and values of \code{l} that control the amount of local exploration. Depending on the starting location and \code{l}, the method can take some time to converge, thus it is only included in \code{method="all"} if \code{include.greedy=TRUE}. If \code{method="all"}, the starting location \code{cl.start} defaults to the best clustering found by the other methods. A description of the algorithm at every iteration is printed if \code{suppress.comment=FALSE}.
+If \code{method="all"} all minimization methods except \code{"laugreen"} and \code{"greedy"} are applied by default.
 
 }
 
@@ -82,7 +84,7 @@ Sara Wade, \email{sara.wade@eng.cam.ac.uk}
 %}
 
 
-%% ~Make other sections like Warning with \section{Warning }{....} 
+%% ~Make other sections like Warning with \section{Warning }{....}
 
 \seealso{
 \code{\link{summary.c.estimate}} and \code{\link{plot.c.estimate}} to summarize and plot the resulting output from \code{\link{minVI}} or \code{\link{minbinder.ext}}; \code{\link{comp.psm}} for computing posterior similarity matrix; \code{\link{maxpear}}, \code{\link{minVI}}, and \code{\link{medv}}

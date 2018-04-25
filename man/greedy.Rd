@@ -8,12 +8,13 @@ Optimizes the posterior expected loss with the greedy search algorithm
 Finds a representative partition of the posterior by minimizing the posterior expected loss with possible loss function of Binder's loss, the Variation of Information, and the modified Variation of Information through a greedy search algorithm.
 }
 \usage{
-greedy(psm, cls.draw = NULL, loss = NULL, start.cl = NULL, maxiter = NULL, L = NULL, suppress.comment = TRUE)
+greedy(psm, cls.draw = NULL, loss = NULL, start.cl = NULL,
+maxiter = NULL, L = NULL, suppress.comment = TRUE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
 \item{psm}{a posterior similarity matrix, which can be obtained from MCMC samples of clusterings through a call to \code{comp.psm}.}
- \item{cls.draw}{a matrix of the MCMC samples of clusterings of the \code{ncol(cls)} data points that have been used to compute \code{psm}. Note: \code{cls.draw} has to be provided if 
+ \item{cls.draw}{a matrix of the MCMC samples of clusterings of the \code{ncol(cls)} data points that have been used to compute \code{psm}. Note: \code{cls.draw} has to be provided if
   \code{loss="VI"}.}
   \item{loss}{the loss function used. Should be one of \code{"Binder"}, \code{"VI"}, or \code{"VI.lb"}. Defaults to \code{"VI.lb"}.}
   \item{start.cl}{clustering used as starting point. If \code{NULL} \code{start.cl= 1:nrow(psm)} is used.}
@@ -24,7 +25,7 @@ greedy(psm, cls.draw = NULL, loss = NULL, start.cl = NULL, maxiter = NULL, L = N
 \details{
 This function is called by \code{\link{minVI}} and \code{\link{minbinder.ext}} to optimize the posterior expected loss via a greedy search algorithm. Possible loss functions include Binder's loss (\code{"Binder"}) and the Variation of Information (\code{"VI"}). As computation of the posterior expected Variation of Information is expensive, a third option (\code{"VI.lb"}) is to minimize a modified Variation of Information by swapping the log and expectation. From Jensen's inequality, this can be viewed as minimizing a lower bound to the posterior expected Variation of Information.
 
-At each iteration of the algorithm, we consider the \code{L} closest ancestors or descendants and move in the direction of minimum posterior expected; the distance is measured by Binder's loss or the Variation of Information, depending on the choice of \code{loss}. We recommend trying different starting locations \code{cl.start} and values of \code{l} that control the amount of local exploration. A description of the algorithm at every iteration is printed if \code{suppress.comment=FALSE}. 
+At each iteration of the algorithm, we consider the \code{L} closest ancestors or descendants and move in the direction of minimum posterior expected; the distance is measured by Binder's loss or the Variation of Information, depending on the choice of \code{loss}. We recommend trying different starting locations \code{cl.start} and values of \code{l} that control the amount of local exploration. A description of the algorithm at every iteration is printed if \code{suppress.comment=FALSE}.
 }
 \value{
 \item{cl}{clustering with minimal value of expected loss.}
@@ -32,7 +33,7 @@ At each iteration of the algorithm, we consider the \code{L} closest ancestors o
   \item{iter.greedy}{the number of iterations the method needed to converge.}
 }
 \references{
-Wade, S. and Ghahramani, Z. (2015) Bayesian cluster analysis: Point estimation and credible balls. 
+Wade, S. and Ghahramani, Z. (2015) Bayesian cluster analysis: Point estimation and credible balls.
 Submitted. arXiv:1505.03339.
 }
 

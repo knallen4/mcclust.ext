@@ -13,5 +13,10 @@ Description: This is an extension of the mcclust package. It provides
 	of the posterior. And, to characterize uncertainty in the point 
 	estimate, credible balls can be computed.
 Depends: R (>= 2.10), mcclust
+Imports:
+    stats,
+    graphics,
+    grDevices
 License: GPL (>= 2)
 Packaged: 2015-05-15 09:10:53 UTC; skw38
+RoxygenNote: 6.0.1.9000
