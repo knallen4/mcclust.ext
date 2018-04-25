@@ -1,4 +1,11 @@
 
+<h2>
+
+**NOTE** This package is a copy of the package from
+<http://wrap.warwick.ac.uk/71934/> and will not be maintained.
+
+</h2>
+
 [![Travis build
 status](https://travis-ci.org/muschellij2/mcclust.ext.svg?branch=master)](https://travis-ci.org/muschellij2/mcclust.ext)
 [![AppVeyor build
